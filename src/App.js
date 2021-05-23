@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import './App.css';
+import Header from './components/Header';
+import Input from './components/Input';
+import List from './components/List';
+
+
+function App(props) {
+
+  const [listItem, setListItem] = useState('');
+
+  const [items, setItems] = useState([]);
+
+  const onChangeHandler = (event) => {
+    setListItem(event.target.value);
+}
+
+  const onClickHandler = () => {
+    setItems( (prevState) => {
+      return [...prevState, listItem]
+    });
+    setListItem('');
+  }
+  
+  const onDeleteHandler = (id) => {
+    console.log("deleted");
+
+    setItems((prevState) => {
+      return prevState.filter((item, index) => {
+        return index !== id;
+      })
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <Input 
+      click={onClickHandler} 
+      change={onChangeHandler} 
+      inputfield={listItem}
+      />
+      <ol>
+        {items.map((item, index) => {
+          return <List 
+          key={index} 
+          id={index} 
+          type={item} 
+          onDelete={onDeleteHandler} 
+          /> 
+          })}
+      </ol>
     </div>
   );
 }

@@ -1,0 +1,26 @@
+.input{
+    margin: 0 30%;
+}
+
+.input-box{
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
+    border-radius: 5px;
+}
+
+.icon{
+    position: relative;
+    color: rgb(20, 57, 80);
+    left: 240px;
+    bottom: 30px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+}
